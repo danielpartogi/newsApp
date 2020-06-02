@@ -11,7 +11,12 @@
         android:id="@+id/categoryListFragment"
         android:name="com.example.category.CategoryListFragment"
         android:label="Category">
-        <action android:id="@+id/action_category_to_sources" app:destination="@+id/navgraph_sources"/>
+        <action
+            android:id="@+id/action_category_to_sources"
+            app:destination="@+id/navgraph_sources"
+            app:enterAnim="@anim/slide_upward"
+            app:popExitAnim="@anim/slide_downward"
+            />
     </fragment>
 
     <include app:graph="@navigation/navgraph_sources" />

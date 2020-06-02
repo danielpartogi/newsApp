@@ -1,7 +1,7 @@
 package com.example.core.di
 
-import com.example.core.data.remote.category.CategoryRemoteSource
-import com.example.core.data.remote.category.CategoryRemoteSourceImpl
+import com.example.core.data.remote.CategoryRemoteSource
+import com.example.core.data.remote.CategoryRemoteSourceImpl
 import com.example.core.data.repositories.CategoryRepository
 import com.example.core.data.repositories.CategoryRepositoryImpl
 import dagger.Binds

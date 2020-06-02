@@ -1,7 +1,7 @@
-package com.example.core.data.repositories
+package com.example.core.data.remote
 
 import com.example.core.models.CategoryNews
 
-interface CategoryRepository {
+interface CategoryRemoteSource {
     fun getCategories(): List<CategoryNews>
 }

@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/sourcesFragment"
         android:name="com.example.sources.SourcesFragment"
-        android:label="sources_fragment"
+        android:label="Sources"
         tools:layout="@layout/sources_fragment" />
 </navigation>
