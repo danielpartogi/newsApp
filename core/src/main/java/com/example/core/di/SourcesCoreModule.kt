@@ -8,7 +8,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class SourcesModule {
+abstract class SourcesCoreModule {
     @Binds
     abstract fun provideCategoryRepository(sourcesRepositoryImpl: SourcesRepositoryImpl): SourcesRepository
 

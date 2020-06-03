@@ -9,5 +9,7 @@
         android:id="@+id/sourcesFragment"
         android:name="com.example.sources.SourcesFragment"
         android:label="Sources"
-        tools:layout="@layout/sources_fragment" />
+        tools:layout="@layout/sources_fragment">
+        <argument android:name="category" app:nullable="false" app:argType="string"/>
+    </fragment>
 </navigation>

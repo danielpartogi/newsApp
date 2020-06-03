@@ -8,7 +8,7 @@ import com.example.core.usecases.CategoryUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(private val categoryUseCase: CategoryUseCase) : BaseViewModel(){
+class CategoryViewModel(private val categoryUseCase: CategoryUseCase) : BaseViewModel() {
     class Factory(
         private val categoryUseCase: CategoryUseCase
     ) : ViewModelProvider.NewInstanceFactory() {
@@ -32,7 +32,7 @@ class CategoryViewModel(private val categoryUseCase: CategoryUseCase) : BaseView
         Log.d("data", categories.toString())
     }
 
-    fun onClickCategory(category: CategoryNews)
-            = navigate(CategoryListFragmentDirections.actionCategoryToSources())
+    fun onClickCategory(category: CategoryNews) =
+        navigate(CategoryListFragmentDirections.actionCategoryToSources(category.category))
 
 }

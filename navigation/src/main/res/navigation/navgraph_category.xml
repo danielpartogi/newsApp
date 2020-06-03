@@ -15,8 +15,12 @@
             android:id="@+id/action_category_to_sources"
             app:destination="@+id/navgraph_sources"
             app:enterAnim="@anim/slide_upward"
-            app:popExitAnim="@anim/slide_downward"
-            />
+            app:popExitAnim="@anim/slide_downward">
+            <argument
+                android:name="category"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <include app:graph="@navigation/navgraph_sources" />

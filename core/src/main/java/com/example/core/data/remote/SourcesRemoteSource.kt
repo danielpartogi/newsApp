@@ -4,5 +4,5 @@ import com.example.core.models.SourceNewsList
 
 
 interface SourcesRemoteSource {
-    suspend fun getSources(category:String): List<SourceNewsList>
+    suspend fun getSources(category:String): SourceNewsList
 }

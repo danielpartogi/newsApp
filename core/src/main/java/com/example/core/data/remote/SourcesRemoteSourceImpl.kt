@@ -8,11 +8,11 @@ import javax.inject.Inject
 class SourcesRemoteSourceImpl @Inject constructor() : BaseRemoteSource<NewsAPI>(
     NewsAPI::class.java
 ), SourcesRemoteSource {
-    override suspend fun getSources(category: String): List<SourceNewsList> =
+    override suspend fun getSources(category: String): SourceNewsList =
         try {
             api.getSources(category)
         } catch (exception: HttpException) {
-            if (exception.code() == 404) listOf() else throw exception
+            throw exception
         }
 
 }
