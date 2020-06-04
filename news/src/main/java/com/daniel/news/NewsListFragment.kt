@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.daniel.news.di.DaggerNewsComponent
 import com.daniel.news.di.NewsListModule
 import com.example.core.ui.BaseFragment
 import com.example.core.ui.coreComponent
+import com.example.core.ui.showWarningDialog
 import com.example.core.utils.EndlessRVListener
 import com.example.sources.SourcesFragmentArgs
 import javax.inject.Inject
@@ -51,8 +53,19 @@ class NewsListFragment : BaseFragment<NewsListViewModel>() {
 
         viewModel.getArticles()
         binding.vm = viewModel
+        showLoadingDialog()
 
         setupView()
+        observe()
+    }
+
+    private fun observe(){
+        viewModel.articleResponse.observe(viewLifecycleOwner, Observer {
+            hideLoadingDialog()
+            it.error?.let {err->
+                showWarningDialog(getString(R.string.error), err.message.toString())
+            }
+        })
     }
 
     private fun setupView() {

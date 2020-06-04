@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.core.ui.BaseFragment
 import com.example.core.ui.coreComponent
+import com.example.core.ui.showWarningDialog
 import com.example.sources.databinding.SourcesFragmentBinding
 import com.example.sources.di.DaggerSourcesComponent
 import com.example.sources.SourcesAdapter
@@ -57,6 +58,9 @@ class SourcesFragment : BaseFragment<SourcesViewModel>() {
 
         viewModel.sourcesResponse.observe(viewLifecycleOwner, Observer {
             hideLoadingDialog()
+            it.error?.let {err->
+                showWarningDialog(getString(R.string.error), err.message.toString())
+            }
         })
     }
 
