@@ -29,10 +29,11 @@ class CategoryViewModel(private val categoryUseCase: CategoryUseCase) : BaseView
     }) {
         val categories = categoryUseCase()
         _categories.postValue(categories)
-        Log.d("data", categories.toString())
     }
 
-    fun onClickCategory(category: CategoryNews) =
+    fun onClickCategory(category: CategoryNews) {
+        Log.d("selectedCategory", category.category)
         navigate(CategoryListFragmentDirections.actionCategoryToSources(category.category))
+    }
 
 }

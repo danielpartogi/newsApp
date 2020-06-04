@@ -39,9 +39,6 @@ class CategoryAdapter(private val viewModel: CategoryViewModel) :
         private val binding = CellCategoryBinding.bind(parent)
 
         fun bindTo(categoryNews: CategoryNews, viewModel: CategoryViewModel) {
-
-
-
             val id = parent.context.resources.getIdentifier(
                 categoryNews.imageStringName,
                 "drawable",
@@ -49,8 +46,8 @@ class CategoryAdapter(private val viewModel: CategoryViewModel) :
             )
             binding.vm = viewModel
             binding.category = categoryNews
-            binding.textview.text = categoryNews.category
-            binding.imageview.setImageResource(id)
+            binding.categoryNameTv.text = categoryNews.category
+            binding.categoryIv.setImageResource(id)
         }
     }
 }

@@ -45,7 +45,6 @@ class CategoryListFragment() :
         binding.vm = viewModel
         val adapter = CategoryAdapter(viewModel)
         binding.categoryRv.adapter = adapter
-
         viewModel.getCategories()
 
 

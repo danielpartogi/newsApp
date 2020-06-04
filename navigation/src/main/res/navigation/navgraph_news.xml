@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph_news"
+    app:startDestination="@id/newsFragment">
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.daniel.news.NewsListFragment"
+        android:label="News"
+        tools:layout="@layout/fragment_news_list">
+        <argument
+            android:name="sources"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+</navigation>
