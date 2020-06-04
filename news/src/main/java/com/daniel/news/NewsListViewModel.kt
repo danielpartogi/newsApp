@@ -1,5 +1,6 @@
 package com.daniel.news
 
+import android.widget.SearchView
 import androidx.lifecycle.*
 import com.example.core.models.Article
 import com.example.core.models.ErrorResponse
@@ -32,11 +33,11 @@ class NewsListViewModel(
     val articles: LiveData<List<Article>> get() = _articles
     val articleResponse = MutableLiveData<Resource<List<Article>>>()
 
-    val query = MutableLiveData<String>("")
+    private val _query: MutableLiveData<String> = MutableLiveData("")
+    val query: LiveData<String> get() = _query
 
     fun getArticles(page: Int = 1) =
         viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
-
             articleResponse.postValue(
                 Resource(
                     Resource.Status.ERROR,
@@ -80,6 +81,26 @@ class NewsListViewModel(
                     )
                 )
             }
+        }
+
+    }
+
+    val onQueryTextListeners = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(queryItem: String?): Boolean {
+            queryItem?.let {
+                _articles.postValue(null)
+                _query.postValue(it)
+            }
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            if (newText.isNullOrEmpty()) {
+                _articles.postValue(null)
+                _query.postValue("")
+                getArticles()
+            }
+            return true
         }
 
     }

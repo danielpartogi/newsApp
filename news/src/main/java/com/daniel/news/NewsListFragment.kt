@@ -62,11 +62,18 @@ class NewsListFragment : BaseFragment<NewsListViewModel>() {
     private fun observe(){
         viewModel.articleResponse.observe(viewLifecycleOwner, Observer {
             hideLoadingDialog()
+            hideKeyboard()
             it.error?.let {err->
                 showWarningDialog(getString(R.string.error), err.message.toString())
             }
         })
+
+        viewModel.query.observe(viewLifecycleOwner, Observer {
+            viewModel.getArticles()
+        })
     }
+
+
 
     private fun setupView() {
         val lm = binding.newsArticleRv.layoutManager as LinearLayoutManager

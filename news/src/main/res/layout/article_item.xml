@@ -36,6 +36,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:text="@{article.title}"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

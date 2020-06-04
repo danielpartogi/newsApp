@@ -52,12 +52,12 @@ class SourcesFragment : BaseFragment<SourcesViewModel>() {
         showLoadingDialog()
 
         viewModel.query.observe(viewLifecycleOwner, Observer {
-            hideKeyboard()
             viewModel.filterSources(it)
         })
 
         viewModel.sourcesResponse.observe(viewLifecycleOwner, Observer {
             hideLoadingDialog()
+            hideKeyboard()
             it.error?.let {err->
                 showWarningDialog(getString(R.string.error), err.message.toString())
             }

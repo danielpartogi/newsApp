@@ -22,7 +22,7 @@
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/design_default_color_primary"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -35,9 +35,10 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:background="@color/white"
+                    app:queryTextListener="@{vm.onQueryTextListeners}"
                     android:focusableInTouchMode="true"
                     android:iconifiedByDefault="false"
-                    android:queryHint="test" />
+                    android:queryHint="Cari Berita" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
