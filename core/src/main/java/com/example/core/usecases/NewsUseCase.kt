@@ -6,6 +6,6 @@ import javax.inject.Inject
 class NewsUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
-    suspend operator fun invoke(query: String, source: String) =
-        newsRepository.getNews(query, source)
+    suspend operator fun invoke(query: String, page:Int, source: String) =
+        newsRepository.getNews(query,page, source)
 }

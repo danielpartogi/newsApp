@@ -14,5 +14,23 @@
             android:name="sources"
             app:argType="string"
             app:nullable="false" />
+        <action
+            android:id="@+id/news_to_webview"
+            app:destination="@id/webview">
+            <argument
+                android:name="url"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/webview"
+        android:name="com.example.core.ui.BaseWebViewFragment"
+        tools:layout="@layout/fragment_base_web_view">
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

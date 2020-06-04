@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="vm"
+    type="com.daniel.news.NewsListViewModel" />
     </data>
 
     <FrameLayout
@@ -35,20 +37,21 @@
                     android:background="@color/white"
                     android:focusableInTouchMode="true"
                     android:iconifiedByDefault="false"
-                    android:queryHint="test"
-                    app:queryTextListener="@{vm.onQueryTextListeners}" />
+                    android:queryHint="test" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/news_article_rv"
-                android:layout_width="409dp"
-                android:layout_height="665dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="1dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:items="@{vm.articles}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>

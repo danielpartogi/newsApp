@@ -15,7 +15,8 @@ interface NewsAPI {
     @GET("everything/")
     suspend fun getNews(
         @Query("q") query: String,
+        @Query("page") page: Int,
         @Query("sources") source: String,
         @Query("apiKey") apiKey: String = ConstantsData.API_KEY
-    ) : NewsList
+    ): NewsList
 }

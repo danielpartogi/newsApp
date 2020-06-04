@@ -4,5 +4,7 @@ data class Article(
     val title: String?,
     val description: String?,
     val source: SourcesNews?,
-    val urlToImage: String?
+    val urlToImage: String?,
+    val url: String?
+
 )

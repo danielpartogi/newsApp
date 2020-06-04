@@ -22,7 +22,7 @@ class NewsListViewModel(
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(NewsListViewModel::class.java)) {
-                return NewsListViewModel(source,newsUseCase) as T
+                return NewsListViewModel(source, newsUseCase) as T
             }
             throw IllegalArgumentException("ViewModel not found")
         }
@@ -34,23 +34,56 @@ class NewsListViewModel(
 
     val query = MutableLiveData<String>("")
 
-    fun getArticles() = viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+    fun getArticles(page: Int = 1) =
+        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
 
-        articleResponse.postValue(
-            Resource(
-                Resource.Status.ERROR,
-                ErrorResponse(message = throwable.localizedMessage)
+            articleResponse.postValue(
+                Resource(
+                    Resource.Status.ERROR,
+                    ErrorResponse(message = throwable.localizedMessage)
+                )
             )
-        )
-    }) {
-        val sourcesUseCase = newsUseCase(query.value!!, source)
-        _articles.postValue(sourcesUseCase)
-        _articles.postValue(sourcesUseCase)
-        articleResponse.postValue(
-            Resource(
-                Resource.Status.SUCCESS,
-                null
+        }) {
+            val sourcesUseCase = newsUseCase(query.value!!, page, source)
+            if (_articles.value == null)
+                _articles.postValue(sourcesUseCase)
+            articleResponse.postValue(
+                Resource(
+                    Resource.Status.SUCCESS,
+                    null
+                )
             )
-        )
+        }
+
+    fun getNewArticle(page: Int) {
+        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+
+            articleResponse.postValue(
+                Resource(
+                    Resource.Status.ERROR,
+                    ErrorResponse(message = throwable.localizedMessage)
+                )
+            )
+        }) {
+            val sourcesUseCase = newsUseCase(query.value!!, page, source)
+
+            _articles.value?.let {
+                val oldData = _articles.value?.toMutableList()
+                val list: List<Article> = sourcesUseCase!!.toMutableList()
+                oldData?.addAll(list)
+                _articles.postValue(oldData)
+
+                articleResponse.postValue(
+                    Resource(
+                        Resource.Status.SUCCESS,
+                        null
+                    )
+                )
+            }
+        }
+
     }
+
+    fun onClickNews(url: String) =
+        navigate(NewsListFragmentDirections.newsToWebview(url))
 }

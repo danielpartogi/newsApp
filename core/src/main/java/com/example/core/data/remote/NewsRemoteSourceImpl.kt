@@ -8,9 +8,9 @@ import javax.inject.Inject
 class NewsRemoteSourceImpl @Inject constructor() : BaseRemoteSource<NewsAPI>(
     NewsAPI::class.java
 ), NewsRemoteSource {
-    override suspend fun getNews(query: String, source: String): NewsList =
+    override suspend fun getNews(query: String, page: Int, source: String): NewsList =
         try {
-            api.getNews(query, source)
+            api.getNews(query, page, source)
         } catch (exception: HttpException) {
             throw exception
         }
